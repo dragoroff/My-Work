@@ -1,4 +1,4 @@
-var users = []; //I understand that this array is out of scope, but somehow it's reachable and I can keep data in local storage
+var users = []; 
 $('document').ready(
   $('#button').click(function(){
 var parsed = JSON.parse(localStorage.getItem('obj'));
