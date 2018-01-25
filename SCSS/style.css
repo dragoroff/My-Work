@@ -1,0 +1,36 @@
+ul li:nth-child(1) {
+  border-top-left-radius: 45%;
+}
+
+ul li:nth-child(3) {
+  border-top-right-radius: 45%;
+}
+
+ul li:nth-child(7) {
+  border-bottom-left-radius: 45%;
+}
+
+ul li:nth-child(9) {
+  border-bottom-right-radius: 45%;
+}
+
+ul li:nth-child(even) {
+  font-size: 7em;
+  padding: 15%;
+  float: left;
+  list-style: none;
+  margin: 2px;
+  background-color: grey;
+  color: pink;
+}
+
+ul li:nth-child(odd) {
+  font-size: 7em;
+  padding: 15%;
+  float: left;
+  list-style: none;
+  margin: 2px;
+  background-color: pink;
+  color: grey;
+}
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,32 @@
+ul {
+$size: 7em; 
+    @mixin style{   
+        font-size: $size;
+        padding: 15%;
+        float: left;
+        list-style: none;
+        margin: 2px;
+    }
+$num: 45%;
+    @mixin borders($position, $percent)
+    {
+        border: {
+            #{$position}-radius: $percent;
+        }
+    }
+    li:nth-child(1){@include borders(top-left, $num)}
+    li:nth-child(3){@include borders(top-right, $num)}
+    li:nth-child(7){@include borders(bottom-left, $num)}
+    li:nth-child(9){@include borders(bottom-right, $num)}
+    li:nth-child(even) {
+        @include style;
+        background-color: grey;
+        color: pink; 
+                }
+            li:nth-child(odd){
+                @include style;
+                background-color: pink;
+                color: grey;
+            }
+     }
+
