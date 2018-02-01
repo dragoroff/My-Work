@@ -1,0 +1,15 @@
+table {
+    text-align: center;
+    border: 1px solid black
+}
+tbody tr:nth-child(odd) {
+    background-color: lightgreen
+}
+tbody tr:nth-child(even)
+{
+    background-color: lightblue;
+}
+th {
+    padding: 5px;
+    background-color: lightgrey;
+}
