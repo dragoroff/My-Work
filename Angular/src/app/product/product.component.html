@@ -1,0 +1,15 @@
+<h1>Our best books</h1>
+    <div id="wrapper">
+    <mat-form-field>
+        <input matInput #search type="text" placeholder="Search..."> 
+    </mat-form-field>
+    <a mat-raised-button  (click)="getBooksQuery()">Submit</a> 
+    </div>
+
+    <div *ngFor="let item of books" class="books">
+        <mat-card>    
+            <app-product-preview [book]="item"></app-product-preview>
+        </mat-card>
+            <button mat-raised-button *ngIf="item.volumeInfo.title; else noDetails" (click)="moveToPage(item.volumeInfo.title)">More details</button>
+            <ng-template #noDetails>No Details</ng-template>
+     </div>

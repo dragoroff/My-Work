@@ -1,0 +1,15 @@
+<div class = "dropdown-wrapper">       
+  <div class="dropdown-control" (click)="dropDownOpen=!dropDownOpen">
+     {{controlTitle}} 
+     <img src="{{selected? selected.flag : ''}}" />
+    <span>&#9660;</span>
+  </div>
+  <ul *ngIf="dropDownOpen" class="dropdown" name="country" id="country">
+      <li *ngFor="let country of data; let i = index" (click)="selectCountry(country,i)" app-hover >
+        <span>{{country.name}}</span> 
+        <div class="img-wrapper">
+          <img src={{country.flag}} />
+        </div>
+      </li>
+  </ul>
+</div>

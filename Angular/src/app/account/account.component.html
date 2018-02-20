@@ -1,0 +1,9 @@
+<!--<app-register-form></app-register-form>-->
+<mat-toolbar>
+    <mat-toolbar-row>
+            <a mat-raised-button routerLink="/account/register" *ngIf="!isLoggedIn.state" (click)="switcher='Register'">Register</a>
+            <a mat-raised-button routerLink="/account/login" *ngIf="!isLoggedIn.state" (click)="switcher='Login'">Login</a>
+            <a mat-raised-button *ngIf="isLoggedIn.state" (click)="logOut()" href="javascript:void(0)">Logout</a>
+            <router-outlet></router-outlet>
+    </mat-toolbar-row>
+</mat-toolbar>

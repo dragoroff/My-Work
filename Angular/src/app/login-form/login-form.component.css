@@ -1,0 +1,24 @@
+  .loginError {
+    padding: 16px;
+    width: 300px;
+    color: white;
+  }
+
+  .loginButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  button {
+    background-color: red;
+    color: white;
+  }
+  .form-container{
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 5%;
+  }
+ mat-form-field{
+   width: 200px;
+ }

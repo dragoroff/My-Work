@@ -1,0 +1,1 @@
+1. add price and other stuff to product card in the shopping cart

@@ -1,0 +1,27 @@
+<form [formGroup]="formGroup" (ngSubmit)="addUser()">
+
+  
+  <div class="form-container">
+      <mat-form-field hintLabel="Max 16 characters">
+          <input matInput type="text" #input maxlength="16" formControlName="login" placeholder="Enter User Name"/>
+          <mat-hint align="end">{{input.value?.length || 0}}/16</mat-hint>
+      </mat-form-field>
+        <p>
+          <app-validation-errors [checkErrors]="formGroup.controls['login']"></app-validation-errors>
+        </p>
+    <mat-form-field hintLabel="Max 16 characters">
+        <input matInput type="text" #inputPass maxlength="16" formControlName="password" placeholder="Enter Your Password"/>
+        <mat-hint align="end">{{inputPass.value?.length || 0}}/16</mat-hint>
+    </mat-form-field>
+        <p>
+          <app-validation-errors [checkErrors]="formGroup.controls['password']"></app-validation-errors>
+        </p>   
+            <p>
+                <button mat-raised-button [disabled]="!formGroup.valid">Login</button>
+            </p>
+            <p style="color:red">
+              {{incorrectLogin}}
+            </p>
+  </div>
+            
+</form>

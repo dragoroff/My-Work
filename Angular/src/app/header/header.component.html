@@ -1,0 +1,29 @@
+<!--<img [src]="userInfo.userUrlAvatar"/>
+<span style="margin-top:35px">Hello {{userInfo.fullName}}!</span>
+
+
+<button *ngIf="userInfo.fullName!='Guest'">Cart</button>
+<button routerLink="/home">Home</button>
+<button routerLink="/account">My account</button>
+<button routerLink="/products">Products</button>
+-->
+
+<mat-toolbar>
+
+        <mat-toolbar-row>
+              <span>
+                      <a mat-raised-button routerLink="/home">Home</a>
+                      <a mat-raised-button routerLink="/account">My Account</a>
+                      <a mat-raised-button routerLink="/products" >Products</a>
+                      <a *ngIf="userInfo.fullName!='Guest'" mat-raised-button routerLink="/cart" >My Cart</a>   
+              </span>
+              <span class="spacer"></span>
+              <span>hello {{userInfo.fullName}}</span>
+              <span>
+                      <img [src]="userInfo.userUrlAvatar"/>
+  
+                </span>
+        </mat-toolbar-row>
+  
+  </mat-toolbar>
+  <!--*ngIf="userInfo.fullName!='Guest'"-->

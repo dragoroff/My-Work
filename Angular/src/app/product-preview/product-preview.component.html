@@ -1,0 +1,18 @@
+<div> 
+    <img src="{{book.volumeInfo.imageLinks?.smallThumbnail}}"/>
+    <div><strong>{{ book.volumeInfo.title | slicerPipe:18}}</strong></div>
+    <div *ngIf="book.volumeInfo.subtitle!== undefined; else empty">{{book.volumeInfo.subtitle | slicerPipe:18 }}</div>
+    <div><ng-template #empty><em>No subtitle</em></ng-template></div>
+    <div *ngIf="book.volumeInfo.authors?.length >= 1; else emptyAuthor">{{book.volumeInfo.authors[0] | slicerPipe:18 }}</div>
+    <div><ng-template #emptyAuthor><em>Unknown Author</em></ng-template></div>
+    <div *ngIf="book.saleInfo!== undefined; else defaultPrice" style="color:forestgreen"><strong>{{book.saleInfo.listPrice.amount}} NIS</strong></div>
+    <div><ng-template #defaultPrice><strong style="color:forestgreen">{{defaultBookPrice}} NIS</strong></ng-template></div>
+</div>
+
+<!--
+<div *ngIf="book.volumeInfo.publisher">{{book.volumeInfo.publisher}}</div>
+<div *ngIf="book.volumeInfo.publishedDate">{{book.volumeInfo.publishedDate}}</div>
+<div *ngIf="book.volumeInfo.description">{{book.volumeInfo.description}}</div> 
+<div *ngIf="book.volumeInfo.pageCount">{{book.volumeInfo.pageCount}}</div>
+ <div *ngIf="book.saleInfo?.listPrice?.amount"><strong>{{book.saleInfo.listPrice.amount}} NIS</strong></div>
+-->
