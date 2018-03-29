@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+}
+div.product {
+    border: 1px solid lightblue;
+    padding: 5px;
+    margin: 15px;
+    display: inline-block;
+    background-color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+img {
+    margin-bottom: 55px;
+}
+div.photo {
+    vertical-align: top;
+    display: inline-block;
+    margin: 25px;
+    
+}
+div.content {
+    margin-left: 35px;
+    display: inline-block;
+}
