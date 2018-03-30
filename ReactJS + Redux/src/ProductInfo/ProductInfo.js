@@ -45,7 +45,7 @@ class ProductInfo extends React.Component{
                                                 <p>  
                                                     {x.title}
                                                 </p>
-                                                {/* <p>
+                                                <p>
                                                     {x.subtitle} 
                                                 </p>
                                                 <p> 
@@ -65,7 +65,7 @@ class ProductInfo extends React.Component{
                                                 </p>
                                                 <p>
                                                     {x.price}$
-                                                </p> */}
+                                                </p> 
                                         </li>
                                         :null
                                      })
