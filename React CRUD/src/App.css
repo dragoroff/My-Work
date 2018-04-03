@@ -1,9 +1,21 @@
 .App {
   text-align: center;
 }
+
 .FormControl {
   margin-right: 1%
 }
 .add {
-  margin-bottom: 5%;
+  margin-bottom: 5%
+}
+.button {
+  margin-right: 5px;
+  margin-left: 5px
+}
+.grid {
+  margin-bottom: 1%; 
+  margin-top: 2%
+}
+.form {
+  margin-left: 1%
 }
