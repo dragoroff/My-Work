@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Button, Grid, Col, Row, Form, FormControl} from 'react-bootstrap';
 import './App.css'
 
-class Person extends Component {
+class filteredPerson extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -25,7 +25,7 @@ class Person extends Component {
         event.preventDefault();
         this.props.onEdit(
             this.name.value, this.address.value, this.phone.value, this.picture.value, this.props.id
-    )
+    );
     this.setState({
         isEdit: false
     });
@@ -84,10 +84,9 @@ class Person extends Component {
                 </Grid>
               )
           }
-       
       </div>
     );
   }
 }
 
-export default Person;
+export default filteredPerson;
