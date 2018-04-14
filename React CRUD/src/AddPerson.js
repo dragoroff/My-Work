@@ -10,8 +10,10 @@ constructor(props){
 onSubmit = (event) => {
     event.preventDefault();
     let id = Math.random() * 100;
+    let picture;
+    this.picture.value ? picture = this.picture.value : picture = "https://forums.roku.com/styles/canvas/theme/images/no_avatar.jpg"
     this.props.onSubmit(
-        this.name.value, this.address.value, this.phone.value, this.picture.value, id
+        this.name.value, this.address.value, this.phone.value, picture, id
     );
     this.name.value = ""; 
     this.address.value = ""; 

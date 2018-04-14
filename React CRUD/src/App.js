@@ -4,7 +4,8 @@ import data from './data';
 import Person from './Person';
 import FilteredPerson from './filteredPersons';
 import AddPerson from './AddPerson';
-import {Navbar, Grid, Row, Col, Form, FormControl, DropdownButton, MenuItem} from 'react-bootstrap';
+import {Navbar, Grid, Row, Col, Form, FormControl} from 'react-bootstrap';
+import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
 
 class App extends Component {
   constructor(props){
@@ -12,12 +13,79 @@ class App extends Component {
 
     this.state = {
       persons: data,
-      filteredPersons: ''
+      filteredPersons: '',
+      dropdownOpen: false
     }
     this.onDelete = this.onDelete.bind(this);
     this.addUser = this.addUser.bind(this);
     this.onEdit = this.onEdit.bind(this);
     this.filterHandler = this.filterHandler.bind(this);
+    this.toggle = this.toggle.bind(this);
+    this.sorting = this.sorting.bind(this);
+    this.reverseSorting = this.reverseSorting.bind(this);
+  }
+
+  sorting = () => {
+    const persons = this.getPeople();
+    const filt = this.getFilteredPeople();
+    let sortPersons;
+    if (filt){
+      sortPersons = filt.sort((a,b)=>{
+        a = a.name.toLowerCase();
+        b = b.name.toLowerCase();
+      if (a > b)
+        return 1
+      if (b > a)
+        return -1
+    });
+    }
+    else {
+      sortPersons = persons.sort((a,b)=>{
+        a = a.name.toLowerCase();
+        b = b.name.toLowerCase();
+        if (a > b)
+          return 1
+        if (b > a)
+          return -1
+      });
+    }
+    this.setState({
+      persons: sortPersons
+    });
+  }
+  reverseSorting = () => {
+    const persons = this.getPeople();
+    const filt = this.getFilteredPeople();
+    let revSortPersons;
+    if (filt){
+      revSortPersons = filt.sort((a,b)=>{
+        a = a.name.toLowerCase();
+        b = b.name.toLowerCase();
+      if (a > b)
+        return -1
+      if (b > a)
+        return 1
+    });
+    }
+    else {
+      revSortPersons = persons.sort((a,b)=>{
+        a = a.name.toLowerCase();
+        b = b.name.toLowerCase();
+        if (a > b)
+          return -1
+        if (b > a)
+          return 1
+      });
+    }
+    this.setState({
+      persons: revSortPersons
+    });
+  }
+
+  toggle = () => {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
   }
 
   getPeople = () => {
@@ -29,28 +97,30 @@ class App extends Component {
 
   onDelete = (id) => {
     const persons = this.getPeople();
-    const filt = this.getFilteredPeople();
+    let filt = this.getFilteredPeople();
     let person = persons.filter(x=>{
       return x.id !== id
     });
-    let filtered = filt.filter(x=>{
-      return x.id !== id
-    });
+    if (filt){
+      filt = filt.filter(x=>{
+        return x.id !== id
+      });
+    }
     this.setState({
       persons: person,
-      filteredPersons: filtered
+      filteredPersons: filt
     })
   }
 
   addUser = (name, address, phone, picture, id) => {
     const persons = this.getPeople();
     const filtered = this.getFilteredPeople();
-    persons.push({
-      name, address, phone, picture, id
+    persons.unshift({
+      picture, name, phone, address, id
     });
     if (filtered){
-      filtered.push({
-        name, address, phone, picture, id
+      filtered.unshift({
+        picture, name, phone, address, id
       });
     }
     this.setState({
@@ -115,11 +185,19 @@ class App extends Component {
        <Grid className="grid">
               <Row style={{marginTop: "10px"}}>
               <Col xs={3} md={2}>
-                  <DropdownButton
-                  title="Name">
-                    <MenuItem eventKey="1">Active</MenuItem>
-                    <MenuItem eventKey="2">ActiveNat</MenuItem>
-                  </DropdownButton>
+                  <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                    <DropdownToggle caret>
+                      <span className="lead">Name</span>
+                      </DropdownToggle>
+                    <DropdownMenu>
+                      <DropdownItem>
+                        <a onClick={this.sorting}>A-Z</a>
+                        </DropdownItem>
+                        <DropdownItem>
+                        <a onClick={this.reverseSorting}>Z-A</a>
+                        </DropdownItem>
+                      </DropdownMenu>
+                    </Dropdown>
               </Col>
               <Col xs={3} md={2}>
                   <p className="lead">Address</p>
