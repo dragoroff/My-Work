@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import data from './data';
 import Person from './Person';
-import FilteredPerson from './filteredPersons';
 import AddPerson from './AddPerson';
 import {Navbar, Grid, Row, Col, Form, FormControl} from 'react-bootstrap';
 import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
@@ -34,9 +33,10 @@ class App extends Component {
         a = a.name.toLowerCase();
         b = b.name.toLowerCase();
       if (a > b)
-        return 1
+        return 1;
       if (b > a)
-        return -1
+        return -1;
+      else return 0;
     });
     }
     else {
@@ -44,9 +44,10 @@ class App extends Component {
         a = a.name.toLowerCase();
         b = b.name.toLowerCase();
         if (a > b)
-          return 1
+          return 1;
         if (b > a)
-          return -1
+          return -1;
+          else return 0;
       });
     }
     this.setState({
@@ -62,9 +63,10 @@ class App extends Component {
         a = a.name.toLowerCase();
         b = b.name.toLowerCase();
       if (a > b)
-        return -1
+        return -1;
       if (b > a)
-        return 1
+        return 1;
+        else return 0;
     });
     }
     else {
@@ -72,9 +74,10 @@ class App extends Component {
         a = a.name.toLowerCase();
         b = b.name.toLowerCase();
         if (a > b)
-          return -1
+          return -1;
         if (b > a)
-          return 1
+          return 1;
+          else return 0;
       });
     }
     this.setState({
@@ -212,10 +215,10 @@ class App extends Component {
           </Grid>
           <Grid>
             <Row>
-              <Col xs={6} md={4}/>
+              <Col xs={4} md={2}/>
                 <Col xs={6} md={4}>
                     <Form onSelect={this.filterHandler}>
-                        <FormControl placeholder="Find name..." inputRef={input => this.filterInput = input}/>
+                        <FormControl placeholder="Find a person..." inputRef={input => this.filterInput = input}/>
                     </Form>
                 </Col>
                 </Row>
@@ -223,7 +226,8 @@ class App extends Component {
         {this.state.filteredPersons ? (
           this.state.filteredPersons.map(person=>{
             return (
-              <FilteredPerson
+              <Person
+              key={person.name+person.address+person.phone+person.picture+person.id}
               {...person}
               onDelete={this.onDelete}
               onEdit={this.onEdit}

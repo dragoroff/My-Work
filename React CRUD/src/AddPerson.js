@@ -28,9 +28,9 @@ onSubmit = (event) => {
                 <Col xs={2} md={0.5}/>
                 <Col xs={14} md={11}>
                     <Form onSubmit={this.onSubmit} inline style={{marginLeft: '1%'}}>
-                            <FormControl bsSize="lg" className="FormControl" placeholder="name" inputRef={inputValue=>this.name = inputValue}/>
-                            <FormControl className="FormControl" placeholder="address" inputRef={inputValue=>this.address = inputValue}/>
-                            <FormControl className="FormControl" placeholder="phone" inputRef={inputValue=>this.phone = inputValue}/>
+                            <FormControl bsSize="lg" className="FormControl" placeholder="name" inputRef={inputValue=>this.name = inputValue} required/>
+                            <FormControl className="FormControl" placeholder="address" inputRef={inputValue=>this.address = inputValue} required/>
+                            <FormControl className="FormControl" placeholder="phone" inputRef={inputValue=>this.phone = inputValue} required/>
                             <FormControl className="FormControl" placeholder="picture" inputRef={inputValue=>this.picture = inputValue}/>
                             <Button className="button" type="submit" bsStyle="success">+Add new user</Button>
                     </Form>

@@ -1,65 +1,48 @@
 import React, { Component } from 'react';
 import {Button, Grid, Col, Row, Form, FormControl} from 'react-bootstrap';
+import {FormGroup, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 import './App.css'
 
 class Person extends Component {
     constructor(props){
         super(props);
         this.state = {
-            isEdit: false
+            modal: false,
+            img: this.props.picture
         }
-        this.onEdit = this.onEdit.bind(this);
+        this.imageHandler = this.imageHandler.bind(this);
         this.editHandler = this.editHandler.bind(this);
-        this.handleBack = this.handleBack.bind(this);
+        this.toggle = this.toggle.bind(this);
+    }
+
+    imageHandler = () => {
+        this.setState({
+            img: this.picture.value
+        });
+    }
+
+    toggle = () => {
+        this.setState({
+            modal: !this.state.modal
+        });
     }
 
     onDelete = (id) => {
         this.props.onDelete(id);
   }
-    onEdit = () => {
-        this.setState({
-        isEdit: true
-    })
-  }
+
     editHandler = (event) => {
         event.preventDefault();
         this.props.onEdit(
             this.name.value, this.address.value, this.phone.value, this.picture.value, this.props.id
     )
-    this.setState({
-        isEdit: false
-    });
-  }
-    handleBack = () => {
-        this.setState({
-        isEdit: false
-    });
   }
 
   render() {
       const {name, address, phone, picture, id} = this.props;
     return (
       <div>
-          {
-            this.state.isEdit ? (
-        <Grid className="grid">
-            <Row>
-                <Col xs={2} md={0.5}/>
-                <Col xs={14} md={11}>
-                <Form onSubmit={this.editHandler} inline>
-                    <FormControl className="FormControl" placeholder="name" inputRef={inputValue=>this.name = inputValue} defaultValue={name}/>
-                    <FormControl className="FormControl" placeholder="address" inputRef={inputValue=>this.address = inputValue} defaultValue={address}/>
-                    <FormControl className="FormControl" placeholder="phone" inputRef={inputValue=>this.phone = inputValue} defaultValue={phone}/>
-                    <FormControl className="FormControl" placeholder="picture" inputRef={inputValue=>this.picture = inputValue} defaultValue={picture}/>
-                    <Button bsStyle="success" className="button" type="submit">Save</Button>
-                    <Button bsStyle="danger" className="button" onClick={this.handleBack}>Cancel</Button>
-                </Form>
-                </Col>
-                <Col xs={2} md={0.5}/>
-            </Row>
-        </Grid>
-              ) :(
-                <Grid className="grid">
+          <Grid className="grid">
                     <Row>
                     <Col xs={3} md={2}>
                         {name} 
@@ -75,16 +58,42 @@ class Person extends Component {
                     </Col>
                     <Col xs={6} md={3}>
                         <Button 
-                            bsStyle="success" className="button" onClick={this.onEdit}>
+                            bsStyle="success" className="button" onClick={this.toggle}>
                                 Update
                         </Button>
                         <Button bsStyle="danger" className="button" onClick={this.onDelete.bind(this, id)}>Delete</Button>
                     </Col>
                     </Row>
                 </Grid>
-              )
-          }
-       
+          <Modal isOpen={this.state.modal} toggle={this.toggle}>
+                    <ModalHeader toggle={this.toggle}/>
+                            <Form onSubmit={this.editHandler} inline>
+                            <ModalBody>
+                            <p>
+                                Please fill in all fields to change your personal details
+                            </p>
+                                <FormGroup>
+                                     <FormControl  className="col-md-10" placeholder="name" inputRef={inputValue=>this.name = inputValue} defaultValue={name} required/>
+                                </FormGroup>
+                                <FormGroup>
+                                    <FormControl className="col-md-10" placeholder="address" inputRef={inputValue=>this.address = inputValue} defaultValue={address} required/>
+                                </FormGroup>
+                                <FormGroup>
+                                    <FormControl className="col-md-10" placeholder="phone" inputRef={inputValue=>this.phone = inputValue} defaultValue={phone} required/>
+                                </FormGroup>
+                                <FormGroup>
+                                    <FormControl className="col-md-10" placeholder="picture" onChange={this.imageHandler} inputRef={inputValue=>this.picture = inputValue} defaultValue={picture} required/>
+                                </FormGroup>
+                                <div className="picture-box">
+                                    <img className="picture" alt="" src={this.state.img}/>
+                                </div>
+                            </ModalBody>
+                            <ModalFooter>
+                                <Button bsStyle="success" className="button" onClick={this.toggle} type="submit">Save</Button>
+                                <Button bsStyle="danger" className="button" onClick={this.toggle}>Cancel</Button>
+                            </ModalFooter>
+                            </Form>
+                </Modal>
       </div>
     );
   }
